@@ -92,6 +92,13 @@ class NatsumiUnpinnedTabsClearer {
                     );
                 }
             }
+        } else {
+            if (ucApi.Prefs.get("natsumi.sidebar.clear-unloaded").value) {
+                tabs = tabsList.querySelectorAll(
+                    "tab:not([hidden='true'])[pending]"
+                );
+                }
+            }
         }
 
         if (tabs.length === 0) {
