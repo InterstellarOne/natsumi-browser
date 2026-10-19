@@ -80,9 +80,17 @@ class NatsumiUnpinnedTabsClearer {
 
         if (ucApi.Prefs.get("natsumi.sidebar.clear-keep-selected").exists()) {
             if (ucApi.Prefs.get("natsumi.sidebar.clear-keep-selected").value) {
-                tabs = tabsList.querySelectorAll(
-                    "tab:not([hidden='true']):not([multiselected]):not([selected])"
-                );
+                if (ucApi.Prefs.get("natsumi.sidebar.clear-unloaded").exists()) {
+                    if (ucApi.Prefs.get("natsumi.sidebar.clear-unloaded").value) {
+                        tabs = tabsList.querySelectorAll(
+                            "tab:not([hidden='true']):not([multiselected]):not([selected])[pending]"
+                        );
+                    }
+                } else {
+                    tabs = tabsList.querySelectorAll(
+                        "tab:not([hidden='true']):not([multiselected]):not([selected])"
+                    );
+                }
             }
         }
 
